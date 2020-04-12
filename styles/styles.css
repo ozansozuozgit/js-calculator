@@ -1,38 +1,36 @@
 body{
     height: 100vh;
-    background-color: black;
     display: flex;
     justify-content: center;
     color: white;
     align-items: center;
     font-family: Arial, serif;
+
+    background-color: black;
+
+
 }
 
 #container{
+    position: fixed;
     display: grid;
     grid-template-columns: repeat(4, [col] 1fr);
     grid-template-rows: repeat(7, [row] 1fr);
     width: 300px;
     height: 500px;
     text-align: center;
-    border: 1px solid white;
-    overflow: hidden;
-}
 
-#container >div{
-    /*border: 1px solid white;*/
 }
-
 #top-result{
     grid-column: col 1 / span 4;
     grid-row: row 1;
     justify-self: end;
     align-self: end;
-    font-size: 45px;
-    height: 15px;
-    /*max-width: 100%;*/
-    /*direction: rtl;*/
-    /*overflow: hidden;*/
+    font-size: 60px;
+    /*height: 15px;*/
+    text-shadow: 0 0 1px #19d6d6;
+    /*margin-bottom: 20px;*/
+
 }
 #bottom-result{
     grid-column: col 1 / span 4;
@@ -40,6 +38,9 @@ body{
     height: 30px;
     justify-self: end;
     align-self: end;
+    text-shadow: 0 0 3px aqua;
+    margin-bottom: 20px;
+    font-size: 40px;
 }
 
 
@@ -47,17 +48,40 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 23px;
+    font-size: 50px;
+    transition: 0.3s;
 }
-.white-buttons , .orange-buttons:hover{
+.white-buttons:hover , .orange-buttons:hover{
     cursor: pointer;
+    background: #1fbaba;
+    box-shadow: 0 0 10px #06d0d0, 0 0 40px #29c4c4, 0 0 80px #19d6d6;
 }
 #equal{
-    background-color: orange;
+    /*background-color: orange;*/
     grid-column: col 3 / span 2;
     grid-row: 7;
+    font-size: 2em;
 }
 
-.orange-buttons{
+ .orange-buttons{
     color: orange;
+    font-size: 50px;
+}
+.secondary-operators{
+    font-size: 30px;
+}
+
+.scale-up{
+    transition: 1s;
+    transform: scale(1.4);
+}
+.scale-down{
+     transition: 1s;
+     transform: scale(0.8);
+ }
+
+/* The animation code */
+@keyframes abstract {
+    from {opacity: 0.1;}
+    to {opacity: 0.2;}
 }

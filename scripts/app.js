@@ -3,7 +3,7 @@ const topResult = document.querySelector("#top-result");
 const bottomResult = document.querySelector("#bottom-result");
 const container = document.querySelector("#container");
 const operators = document.querySelectorAll(".operators");
-topResult.fontSize = "45px";
+topResult.fontSize = "60px";
 // bottomResult.fontSize = "12px";
 let size = topResult.fontSize.replace("px", "");
 let dotUsed = false;
@@ -13,14 +13,14 @@ inputs.forEach((input) => {
   input.addEventListener("click", (e) => {
     if (equalsUsed === true) {
       topResult.textContent = "";
-      topResult.textContent = "";
-      topResult.style.fontSize = "45px";
+      topResult.style.fontSize = "60px";
+      size = topResult.fontSize.replace("px", "");
       bottomResult.style.alignSelf = "end";
-      bottomResult.style.fontSize = "16px";
+      bottomResult.style.fontSize = "40px";
       equalsUsed = false;
     }
-    // Only 45 characters allowed
-    if (topResult.textContent.length < 45) {
+    // Only 25 characters allowed
+    if (topResult.textContent.length < 25) {
       // Decrease font size as we get to the border of the screen
       if (topResult.clientWidth + 10 > container.clientWidth && size >= 20) {
         size -= 5;
@@ -35,13 +35,14 @@ inputs.forEach((input) => {
 operators.forEach((operator) => {
   operator.addEventListener("click", (e) => {
     const operatorChar = e.target.innerText;
+    dotUsed = false;
 
     if (equalsUsed === true) {
       topResult.textContent = bottomResult.textContent;
       bottomResult.textContent = "";
-      topResult.style.fontSize = "45px";
+      topResult.style.fontSize = "60px";
       bottomResult.style.alignSelf = "end";
-      bottomResult.style.fontSize = "16px";
+      bottomResult.style.fontSize = "40px";
       equalsUsed = false;
     }
 
@@ -61,11 +62,12 @@ operators.forEach((operator) => {
     if (operatorChar === "%") {
       operatorConcat(operatorChar);
     }
-    if (operatorChar === "=") {
-      bottomResult.style.fontSize = "40px";
+    if (operatorChar === "=" && !(bottomResult.textContent === "")) {
+      bottomResult.style.fontSize = "60px";
       bottomResult.style.alignSelf = "baseline";
-      topResult.style.fontSize = "16px";
+      topResult.style.fontSize = "40px";
       equalsUsed = true;
+      // bottomResult.classList.add("scale-up");
     }
     if (operatorChar === "." && dotUsed === false) {
       operatorConcat(operatorChar);
@@ -73,6 +75,14 @@ operators.forEach((operator) => {
     }
     if (operatorChar === "«") {
       topResult.textContent = topResult.textContent.slice(0, -1);
+      if (topResult.textContent === "") {
+        bottomResult.textContent = "";
+      }
+      // Size it back to original if width is becoming smaller than overflow of container
+      if (topResult.clientWidth + 10 < container.clientWidth && size < 60) {
+        size += 5;
+        topResult.style.fontSize = size.toString() + "px";
+      }
       operate();
     }
     if (operatorChar === "AC") {
@@ -102,7 +112,8 @@ function operate() {
     .replace(/×/g, "*");
   // For backspace errors, since we don't want to evaluate with an operation at the end
   if (!isNaN(topResult.textContent[topResult.textContent.length - 1])) {
-    bottomResult.textContent = math.evaluate(expression);
+    const result = math.evaluate(expression);
+    bottomResult.textContent = math.round(result, 3);
   }
   console.log(expression);
 }
