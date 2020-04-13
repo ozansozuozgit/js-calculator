@@ -7,7 +7,6 @@ body{
     font-family: Arial, serif;
     background-color: black;
 }
-
 #container{
     display: grid;
     grid-template-columns: repeat(4, [col] 1fr);
@@ -15,7 +14,6 @@ body{
     width: 300px;
     height: 500px;
     text-align: center;
-
 }
 #top-result{
     grid-column: col 1 / span 4;
@@ -24,20 +22,15 @@ body{
     align-self: end;
     font-size: 60px;
     text-shadow: 0 0 1px #19d6d6;
-
 }
 #bottom-result{
     grid-column: col 1 / span 4;
     grid-row: row 2;
-    /*height: 30px;*/
     justify-self: end;
     align-self: end;
     text-shadow: 0 0 3px aqua;
-    /*margin-bottom: 20px;*/
     font-size: 40px;
 }
-
-
 .buttons{
     display: flex;
     align-items: center;
@@ -51,47 +44,35 @@ body{
     box-shadow: 0 0 10px #06d0d0, 0 0 40px #29c4c4, 0 0 80px #19d6d6;
 }
 #equal{
-    /*background-color: orange;*/
     grid-column: col 3 / span 2;
     grid-row: 7;
     font-size: 2em;
 }
-
 #btn-percent, #btn-ac{
     font-size: 40px;
     color: #FFF;
-
 }
 #btn-back{
     padding-bottom: 9px;
 }
-
  .operators{
     color: orange;
     font-size: 50px;
 }
-.secondary-operators{
-    font-size: 30px;
-}
-
 .scale-up{
     font-size: 60px!important;
     transition: 1s;
-    /*transform: scale(1.4);*/
     overflow: hidden;
     z-index: 222;
 }
 .scale-down{
     font-size: 30px!important;
      transition: 1s;
-     /*transform: scale(0.5);*/
  }
-
 .vanishOut {
     animation-name: vanishOut;
     animation-duration: 1s;
 }
-
 .vanishIn {
     animation-name: vanishIn;
     animation-duration: 0.4s;
