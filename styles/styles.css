@@ -5,14 +5,10 @@ body{
     color: white;
     align-items: center;
     font-family: Arial, serif;
-
     background-color: black;
-
-
 }
 
 #container{
-    position: fixed;
     display: grid;
     grid-template-columns: repeat(4, [col] 1fr);
     grid-template-rows: repeat(7, [row] 1fr);
@@ -27,31 +23,29 @@ body{
     justify-self: end;
     align-self: end;
     font-size: 60px;
-    /*height: 15px;*/
     text-shadow: 0 0 1px #19d6d6;
-    /*margin-bottom: 20px;*/
 
 }
 #bottom-result{
     grid-column: col 1 / span 4;
     grid-row: row 2;
-    height: 30px;
+    /*height: 30px;*/
     justify-self: end;
     align-self: end;
     text-shadow: 0 0 3px aqua;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     font-size: 40px;
 }
 
 
-.white-buttons , .orange-buttons{
+.buttons{
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 50px;
     transition: 0.3s;
 }
-.white-buttons:hover , .orange-buttons:hover{
+.buttons:hover{
     cursor: pointer;
     background: #1fbaba;
     box-shadow: 0 0 10px #06d0d0, 0 0 40px #29c4c4, 0 0 80px #19d6d6;
@@ -63,7 +57,16 @@ body{
     font-size: 2em;
 }
 
- .orange-buttons{
+#btn-percent, #btn-ac{
+    font-size: 40px;
+    color: #FFF;
+
+}
+#btn-back{
+    padding-bottom: 9px;
+}
+
+ .operators{
     color: orange;
     font-size: 50px;
 }
@@ -72,16 +75,45 @@ body{
 }
 
 .scale-up{
+    font-size: 60px!important;
     transition: 1s;
-    transform: scale(1.4);
+    /*transform: scale(1.4);*/
+    overflow: hidden;
+    z-index: 222;
 }
 .scale-down{
+    font-size: 30px!important;
      transition: 1s;
-     transform: scale(0.8);
+     /*transform: scale(0.5);*/
  }
 
-/* The animation code */
-@keyframes abstract {
-    from {opacity: 0.1;}
-    to {opacity: 0.2;}
+.vanishOut {
+    animation-name: vanishOut;
+    animation-duration: 1s;
 }
+
+.vanishIn {
+    animation-name: vanishIn;
+    animation-duration: 0.4s;
+}
+
+/* The animation code */
+
+@keyframes vanishOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px); }
+    100% {
+        opacity: 0;
+        transform: scale(2);
+        filter: blur(20px); } }
+@keyframes vanishIn {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px); }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+        filter: blur(20px); } }
